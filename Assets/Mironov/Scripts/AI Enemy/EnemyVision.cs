@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyVision : MonoBehaviour
@@ -17,6 +16,7 @@ public class EnemyVision : MonoBehaviour
     void Start()
     {
         _nana = GetComponent<NavMeshAgent>();
+        _nana.enabled = true;
     }
 
     bool GetRaycast(Vector3 dir)
@@ -28,28 +28,20 @@ public class EnemyVision : MonoBehaviour
         {
             if (hit.transform.GetComponent<LightHaracteristics>().Light == true)
             {
-                
-                if(hit.transform.GetComponent<LightHaracteristics>().ForceLight >= _targetforce)
+                if (hit.transform.GetComponent<LightHaracteristics>().ForceLight >= _targetforce)
                 {
                     result = true;
                     _prioritet = hit.transform.gameObject;
                     _targetforce = hit.transform.GetComponent<LightHaracteristics>().ForceLight;
-                    Debug.DrawLine(pos, hit.point, Color.green);
                 }
 
             }
-            else
-            {
-                Debug.DrawLine(pos, hit.point, Color.blue);
-            }
         }
-        else
-        {
-            Debug.DrawRay(pos, dir * distance, Color.red);
-        }
+        Debug.DrawLine(pos, hit.point, Color.green);
+        Debug.DrawLine(pos, hit.point, Color.blue);
+        Debug.DrawRay(pos, dir * distance, Color.red);
         return result;
     }
-
     bool RayToScan()
     {
         bool result = false;
@@ -72,25 +64,21 @@ public class EnemyVision : MonoBehaviour
                 if (GetRaycast(dir)) b = true;
             }
         }
-
         if (a || b) result = true;
         return result;
     }
-
     void Update()
-
-
     {
         if (Vector3.Distance(transform.position, _prioritet.transform.position) < _targetforce)
         {
             if (RayToScan())
             {
-                _nana.enabled = true;
+               // _nana.enabled = true;
             }
-            else
-            {
-                Patrol();
-            }
+        }
+        else
+        {
+            Patrol();
         }
     }
     void Patrol()
