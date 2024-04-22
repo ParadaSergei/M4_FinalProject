@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4763033322f5c04fb4add1443371fab, type: 3}
+  m_Name: Stick
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  name: stick
+  maxAmountStack: 1
+  icon: {fileID: 21300000, guid: 235908552051ff946a5c6f7cde8b5783, type: 3}
+  lovushkaPrefab: {fileID: 3458799647809888052, guid: 5c8de382ad4180744b963d5edb4e9687,
+    type: 3}
+  changedHealth: 0

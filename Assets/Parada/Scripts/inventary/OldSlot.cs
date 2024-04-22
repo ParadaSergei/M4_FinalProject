@@ -18,7 +18,5 @@ public class OldSlot : MonoBehaviour
         oldSlot.isEmpty = true;
         oldSlot.icon.GetComponent<Image>().sprite = notSelectedSprite;
         oldSlot.textAmountText.text = "";
-
     }
-
 }

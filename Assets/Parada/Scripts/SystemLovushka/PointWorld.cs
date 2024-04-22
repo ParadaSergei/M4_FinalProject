@@ -5,10 +5,15 @@ public class PointWorld : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private ActiveItemSlotInventary activeSlot;
-    private RaycastHit hit;
+    public RaycastHit hit;
     private Ray ray;
-    [SerializeField] private GameObject lovushka;
     [SerializeField] private Inventorymanager manager;
+
+    [Header("LightStickDrop")]
+    [SerializeField] private Transform _pricelCursor;
+    [SerializeField] private GameObject _stickPrefab;
+    [SerializeField] private GameObject _lightStickDrop;
+    private float forceStick = 100;
 
     void Start()
     {
@@ -19,44 +24,92 @@ public class PointWorld : MonoBehaviour
     void Update()
     {
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        /*if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.Lovushka && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
-        {*/
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item != null)
+            {
+                CheckStickInventory();
+                CheckLovushkaInventory();
+            }
+        }
+        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item != null)
+        {
+            CheckStickInventory();
+        }
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            gameObject.transform.position = hit.point;
+
+            if (hit.collider.gameObject.GetComponent<Item>() != null)
+            {
+                if (Input.GetMouseButton(0)) //Добавления объекта
+                {
+                    foreach (InventorySlot slot in manager.inventorySlots)
+                    {
+                        if (slot.isEmpty == true)
+                        {
+                            manager.AddItem(hit.collider.gameObject.GetComponent<Item>().itemItem, hit.collider.gameObject.GetComponent<Item>().amountItem);
+                            Destroy(hit.collider.gameObject);
+                            break;
+                        }
+                    }
+                }   
+            }
+        }
+    }
+    private void CheckStickInventory()
+    {
+        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.LightPalka && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
+        {
+
+            if (forceStick > 1000)
+            {
+                forceStick = 1000;
+            }
+            if (Input.GetKey(KeyCode.G))
+            {
+                forceStick += 5;
+            }
+            if (Input.GetKeyUp(KeyCode.G))
+            {
+                var __stickPrefabRig = Instantiate(_stickPrefab, _lightStickDrop.transform.position, _lightStickDrop.transform.rotation);
+                __stickPrefabRig.GetComponent<Rigidbody>().AddForce(_lightStickDrop.transform.forward * forceStick);
+                forceStick = 100;
+                DestroyItemSlot();
+            }
+
+        }
+    }
+    private void CheckLovushkaInventory()
+    {
+        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.Lovushka && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
+        {
+            ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100f))
             {
                 gameObject.transform.position = hit.point;
-                /*
-                if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)
+                if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)//Проверка объекта
                 {
                     Debug.Log("Место ловушки");
                     if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == true)
                     {
                         hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty = false;
-                        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.lovushkaPrefab != null)
-                            Instantiate(activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.lovushkaPrefab, hit.transform.position, hit.transform.rotation);
-                    }
-                }*/
-                if (hit.collider.gameObject.GetComponent<Item>() != null)
-                {
-                    if (Input.GetMouseButton(0))
-                    {
-                        manager.AddItem(hit.collider.gameObject.GetComponent<Item>().itemItem, hit.collider.gameObject.GetComponent<Item>().amountItem);
-                        Destroy(hit.collider.gameObject);
                     }
                 }
-           // }
-            /*
-            if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)
-            {
-                Debug.Log("Место ловушки");
-                if (Input.GetMouseButton(0))
-                {
-                    if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == true)
-                    {
-                        hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty = false;
-                        Instantiate(lovushka, hit.transform.position, hit.transform.rotation);
-                    }
-                }
-            }*/
+            }
+            if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null) DestroyItemSlot();
+        }
+    }
+    private void DestroyItemSlot()
+    {
+        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem <= 1)
+        {
+            activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponentInChildren<OldSlot>().NullifySlotData();
+        }
+        else
+        {
+            activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem--;
+            activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().textAmountText.text = activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem.ToString();
         }
     }
 }

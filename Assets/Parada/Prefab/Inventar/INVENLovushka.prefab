@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2115811216455908182}
   - component: {fileID: 2115811216455908183}
   - component: {fileID: 2115811216455908139}
+  - component: {fileID: 627244523721611127}
   m_Layer: 0
   m_Name: INVENLovushka
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2115811216455908180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.05, y: 1.21, z: -7.22}
-  m_LocalScale: {x: 1, y: 1, z: 2.5426}
+  m_LocalScale: {x: 0.8, y: 0.5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,3 +109,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemItem: {fileID: 11400000, guid: 67d29e34a1496ea4182dfea0040f43b0, type: 2}
   amountItem: 1
+--- !u!114 &627244523721611127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115811216455908180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344c6e1a8c44a1147986bc2658fcc31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

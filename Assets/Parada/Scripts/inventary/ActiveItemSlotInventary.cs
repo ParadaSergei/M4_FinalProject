@@ -15,46 +15,7 @@ public class ActiveItemSlotInventary : MonoBehaviour
     private Ray ray;
     void Update()
     {
-
-
         ScrollSystem();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item != null)
-            {
-                if (QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.Lovushka && QuickPanel.GetChild(currentQuickSlotID).GetComponent<Image>().sprite == selectedSprite)
-                {
-                    ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray, out hit, 100f))
-                    {
-                        gameObject.transform.position = hit.point;
-                        if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)
-                        {
-                            Debug.Log("Место ловушки");
-                            if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == true)
-                            {
-                                hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty = false;
-                                if (QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item.lovushkaPrefab != null)
-                                    Instantiate(QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item.lovushkaPrefab, hit.transform.position, hit.transform.rotation);
-                            }
-                        }
-                    }
-                    if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)
-                    {
-
-                        if (QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().amountItem <= 1)
-                        {
-                            QuickPanel.GetChild(currentQuickSlotID).GetComponentInChildren<OldSlot>().NullifySlotData();
-                        }
-                        else
-                        {
-                            QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().amountItem--;
-                            QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().textAmountText.text = QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().amountItem.ToString();
-                        }
-                    }
-                }
-            }
-        }
     }
     private void ScrollSystem()
     {
@@ -109,16 +70,4 @@ public class ActiveItemSlotInventary : MonoBehaviour
             }
         }
     }
-    /*    public void ChangeHeals()
-        {
-            if (rassudok.rasudokAmount + QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item.changedHealth <= 100)
-            {
-                float newHealse = rassudok.rasudokAmount + QuickPanel.GetChild(currentQuickSlotID).GetComponent<InventorySlot>().item.changedHealth;
-                rassudok.rasudokAmount = newHealse;
-            }
-            else
-            {
-                rassudok.rasudokAmount = 100f;
-            }
-        }*/
 }
