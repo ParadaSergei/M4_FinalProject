@@ -9,6 +9,10 @@ public class PointWorld : MonoBehaviour
     private Ray ray;
     [SerializeField] private Inventorymanager manager;
 
+
+    [Header("СпавнТочкиРастяжки")]
+    [SerializeField] private GameObject _pointSpawn;
+
     [Header("LightStickDrop")]
     [SerializeField] private Transform _pricelCursor;
     [SerializeField] private GameObject _stickPrefab;
@@ -26,6 +30,7 @@ public class PointWorld : MonoBehaviour
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            SpawnPointLovushka();
             if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item != null)
             {
                 CheckStickInventory();
@@ -56,6 +61,10 @@ public class PointWorld : MonoBehaviour
                 }   
             }
         }
+    }
+    private void SpawnPointLovushka()
+    {
+        Instantiate(_pointSpawn, transform.position ,Quaternion.identity);
     }
     private void CheckStickInventory()
     {
