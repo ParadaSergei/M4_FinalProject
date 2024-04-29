@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Mironov/Scenes/UI/MainUI.unity
+    guid: 16cf6dbeb8f2a2d44a5fdb54c40b85cb
+  - enabled: 1
+    path: Assets/Mironov/Scenes/UI/LEVEL1.unity
+    guid: 4326d359f61a7374d9714f9e6afbc549
+  - enabled: 1
+    path: Assets/Mironov/Scenes/UI/LEVEL2.unity
+    guid: e219c5f7e259f434eabfa01412d5612f
+  - enabled: 1
+    path: Assets/Mironov/Scenes/UI/LEVEL3.unity
+    guid: 3613148ece063d242b55b4f5d526c375
+  - enabled: 1
+    path: Assets/Mironov/Scenes/UI/END.unity
+    guid: 7b321a0ba067a424bb86c1da9bd4f4f0
   m_configObjects: {}
