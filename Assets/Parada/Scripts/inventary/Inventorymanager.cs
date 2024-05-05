@@ -19,10 +19,7 @@ public class Inventorymanager : MonoBehaviour
             }
         }
     }
- /*   public void HitLoading(RaycastHit _hit)
-    {
-        hit = _hit;
-    }*/
+
     public void AddItem(ItemScribtableObject _item , int _amount)
     {
         foreach (InventorySlot slot in inventorySlots)

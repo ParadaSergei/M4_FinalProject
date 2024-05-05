@@ -9,15 +9,15 @@ public class PointWorld : MonoBehaviour
     private Ray ray;
     [SerializeField] private Inventorymanager manager;
 
-
-    [Header("СпавнТочкиРастяжки")]
-    [SerializeField] private GameObject _pointSpawn;
-
     [Header("LightStickDrop")]
     [SerializeField] private Transform _pricelCursor;
     [SerializeField] private GameObject _stickPrefab;
     [SerializeField] private GameObject _lightStickDrop;
     private float forceStick = 100;
+
+    [Header("Смена Курсора")]
+    [SerializeField] private Texture2D cursor;
+    [SerializeField] private Texture2D cursorActive;
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class PointWorld : MonoBehaviour
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            SpawnPointLovushka();
             if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item != null)
             {
                 CheckStickInventory();
@@ -44,6 +43,8 @@ public class PointWorld : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f))
         {
             gameObject.transform.position = hit.point;
+            if (hit.collider.gameObject.GetComponent<Item>() != null || hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null) ActiveCursor();
+            else DefaultCursor();
 
             if (hit.collider.gameObject.GetComponent<Item>() != null)
             {
@@ -58,19 +59,14 @@ public class PointWorld : MonoBehaviour
                             break;
                         }
                     }
-                }   
+                }
             }
         }
-    }
-    private void SpawnPointLovushka()
-    {
-        Instantiate(_pointSpawn, transform.position ,Quaternion.identity);
     }
     private void CheckStickInventory()
     {
         if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.LightPalka && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
         {
-
             if (forceStick > 1000)
             {
                 forceStick = 1000;
@@ -121,4 +117,6 @@ public class PointWorld : MonoBehaviour
             activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().textAmountText.text = activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem.ToString();
         }
     }
+    private void ActiveCursor() => Cursor.SetCursor(cursorActive, Vector2.zero, CursorMode.Auto);
+    private void DefaultCursor() => Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 }
