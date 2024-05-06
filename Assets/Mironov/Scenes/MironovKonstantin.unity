@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,7 +157,6 @@ MonoBehaviour:
   PatrolPoints:
   - {fileID: 696190738}
   - {fileID: 1002871833}
-  _prioritet: {fileID: 1685126791}
   rays: 180
   angle: 355
   offset: {x: 0, y: 1, z: 0}
@@ -400,7 +399,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 83168126169389c4e84f1f893a8d4a4a, type: 2}
+  - {fileID: 2100000, guid: 5ae10aec211ae62418da8f202bafde79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -681,7 +680,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 83168126169389c4e84f1f893a8d4a4a, type: 2}
+  - {fileID: 2100000, guid: 5ae10aec211ae62418da8f202bafde79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,7 +775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 83168126169389c4e84f1f893a8d4a4a, type: 2}
+  - {fileID: 2100000, guid: 5ae10aec211ae62418da8f202bafde79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
