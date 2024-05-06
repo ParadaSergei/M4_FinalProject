@@ -151,15 +151,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 36746714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b25f695a9703df4c9cbf5e558fc8ea8, type: 3}
+  m_Script: {fileID: 11500000, guid: e169c235ef34cd747aad6acae1e95461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PatrolPoints:
   - {fileID: 696190738}
   - {fileID: 1002871833}
-  rays: 180
-  angle: 355
-  offset: {x: 0, y: 1, z: 0}
+  Player: {fileID: 1685126795}
+  Offset: {x: 0, y: 0, z: 0}
+  Damage: 30
+  TrapDistanceVision: 10
+  PlayerDistanceVision: 10
 --- !u!195 &36746716
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -253,7 +255,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 516499514}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -455,7 +458,7 @@ GameObject:
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -466,12 +469,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516499513}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8146229, y: -0.16, z: -1.4878731}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 36746720}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &516499515
 MonoBehaviour:
