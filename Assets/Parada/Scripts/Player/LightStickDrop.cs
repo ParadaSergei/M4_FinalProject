@@ -27,6 +27,6 @@ public class LightStickDrop : MonoBehaviour
     }
     private void LateUpdate()
     {
-        transform.LookAt(_pricelCursor.position);
+        transform.LookAt(_pricelCursor.position); 
     }
 }

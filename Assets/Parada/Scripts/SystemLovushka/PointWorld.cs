@@ -19,6 +19,10 @@ public class PointWorld : MonoBehaviour
     [SerializeField] private Texture2D cursor;
     [SerializeField] private Texture2D cursorActive;
 
+    [Header("Контроль уменьшения энергии")]
+    [SerializeField] private int minusPower = 10;
+    [SerializeField] private HealthBarValue _healthBarValue;
+
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -80,6 +84,7 @@ public class PointWorld : MonoBehaviour
                 var __stickPrefabRig = Instantiate(_stickPrefab, _lightStickDrop.transform.position, _lightStickDrop.transform.rotation);
                 __stickPrefabRig.GetComponent<Rigidbody>().AddForce(_lightStickDrop.transform.forward * forceStick);
                 forceStick = 100;
+                _healthBarValue.healthValue -= minusPower;
                 DestroyItemSlot();
             }
 
@@ -95,6 +100,7 @@ public class PointWorld : MonoBehaviour
                 gameObject.transform.position = hit.point;
                 if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)//Проверка объекта
                 {
+                    _healthBarValue.healthValue -= minusPower;
                     Debug.Log("Место ловушки");
                     if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == true)
                     {
