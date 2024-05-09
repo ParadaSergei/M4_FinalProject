@@ -35,24 +35,21 @@ public class AIEnemyBETA : MonoBehaviour
             _navMeshAgent.SetDestination(_trappos.position);
             return;
         }
+
+        if (CheckPlayer())
+        {
+            _navMeshAgent.SetDestination(Player.position);
+        }
         else
         {
-            if (CheckPlayer())
-            {
-                _navMeshAgent.SetDestination(Player.position);
-            }
-            else
-            {
-                Patrol();
-            }
+            Patrol();
         }
-       
     }
 
     bool CheckTrap()
     {
-       if (_trap != null)
-       {
+        if (_trap != null)
+        {
             _trappos = _trap.transform;
             Vector3 direction = _trap.transform.position - transform.position;
 
@@ -66,11 +63,11 @@ public class AIEnemyBETA : MonoBehaviour
             }
             return false;
         }
-       return false;
+        return false;
     }
     bool CheckPlayer()
     {
-        Vector3 direction = Player.position - transform.position;
+        /*Vector3 direction = Player.position - transform.position;
 
         RaycastHit hit;
         if (Physics.Raycast(_rayposition, direction, out hit, PlayerDistanceVision))
@@ -79,6 +76,10 @@ public class AIEnemyBETA : MonoBehaviour
             {
                 return true;
             }
+        }*/
+        if (Vector3.Distance(Player.position, transform.position) < 5)
+        {
+            return true;
         }
         return false;
     }
