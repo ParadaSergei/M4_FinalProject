@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro/Sprites.meta
 guid: d0603b6d5186471b96c778c3949c7ce2
+========
+guid: 6ea315d0fd7389c41b19996891e99ae3
+>>>>>>>> Mironov:Assets/Scenes.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

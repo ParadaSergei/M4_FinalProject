@@ -15,6 +15,14 @@ public class PointWorld : MonoBehaviour
     [SerializeField] private GameObject _lightStickDrop;
     private float forceStick = 100;
 
+    [Header("Смена Курсора")]
+    [SerializeField] private Texture2D cursor;
+    [SerializeField] private Texture2D cursorActive;
+
+    [Header("Контроль уменьшения энергии")]
+    [SerializeField] private int minusPower = 10;
+    [SerializeField] private HealthBarValue _healthBarValue;
+
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -39,6 +47,8 @@ public class PointWorld : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f))
         {
             gameObject.transform.position = hit.point;
+            if (hit.collider.gameObject.GetComponent<Item>() != null || hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null) ActiveCursor();
+            else DefaultCursor();
 
             if (hit.collider.gameObject.GetComponent<Item>() != null)
             {
@@ -53,7 +63,7 @@ public class PointWorld : MonoBehaviour
                             break;
                         }
                     }
-                }   
+                }
             }
         }
     }
@@ -61,7 +71,6 @@ public class PointWorld : MonoBehaviour
     {
         if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.LightPalka && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
         {
-
             if (forceStick > 1000)
             {
                 forceStick = 1000;
@@ -75,6 +84,7 @@ public class PointWorld : MonoBehaviour
                 var __stickPrefabRig = Instantiate(_stickPrefab, _lightStickDrop.transform.position, _lightStickDrop.transform.rotation);
                 __stickPrefabRig.GetComponent<Rigidbody>().AddForce(_lightStickDrop.transform.forward * forceStick);
                 forceStick = 100;
+                _healthBarValue.healthValue -= minusPower;
                 DestroyItemSlot();
             }
 
@@ -90,6 +100,7 @@ public class PointWorld : MonoBehaviour
                 gameObject.transform.position = hit.point;
                 if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null)//Проверка объекта
                 {
+                    _healthBarValue.healthValue -= minusPower;
                     Debug.Log("Место ловушки");
                     if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == true)
                     {
@@ -112,4 +123,6 @@ public class PointWorld : MonoBehaviour
             activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().textAmountText.text = activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem.ToString();
         }
     }
+    private void ActiveCursor() => Cursor.SetCursor(cursorActive, Vector2.zero, CursorMode.Auto);
+    private void DefaultCursor() => Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
 }
