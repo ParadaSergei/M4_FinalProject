@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Obchee/Scene/UI/MainUI.unity
+    guid: 16cf6dbeb8f2a2d44a5fdb54c40b85cb
+  - enabled: 1
     path: Assets/Obchee/Scene/Level1.unity
     guid: 09e962f6a51f7c44f965c3845cad3711
   - enabled: 0
-    path: Assets/Obchee/Scene/UI/MainUI.unity
-    guid: 16cf6dbeb8f2a2d44a5fdb54c40b85cb
-  - enabled: 0
-    path: Assets/Mironov/Scenes/UI/LEVEL1.unity
-    guid: 4326d359f61a7374d9714f9e6afbc549
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Mironov/Scenes/UI/END.unity
     guid: 7b321a0ba067a424bb86c1da9bd4f4f0
