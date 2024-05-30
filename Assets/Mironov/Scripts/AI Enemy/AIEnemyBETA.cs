@@ -4,7 +4,8 @@ using UnityEngine.AI;
 
 public class AIEnemyBETA : MonoBehaviour
 {
-    public Animation Anime;
+    public Animation Walk;
+    public Animation Idle;
     public List<Transform> PatrolPoints;
     public Transform Player;
     public Vector3 Offset;
@@ -96,11 +97,11 @@ public class AIEnemyBETA : MonoBehaviour
     {
         if (_navMeshAgent.isStopped == true)
         {
-            Anime.Play("Calm");
+            Idle.Play();
         }
         else
         {
-            Anime.Play("Walk");
+            Walk.Play();
         }
     }
 }
