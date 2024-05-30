@@ -3,6 +3,7 @@
 public class CheckObjectInLovushkiForLine : MonoBehaviour
 {
     [SerializeField] private LineRenderer line;
+    [SerializeField] private GameObject helpPrefab;
     [SerializeField] private PointTriggerLovushka pointTriggerLovushkaScripts;
     private void Start()
     {
@@ -15,6 +16,7 @@ public class CheckObjectInLovushkiForLine : MonoBehaviour
         {
             if (transform.childCount >= 2 && transform.GetChild(0) != null && transform.GetChild(1) != null)
             {
+                    Destroy(helpPrefab);
                 line.SetPosition(0, transform.GetChild(0).gameObject.transform.position);
                 line.SetPosition(1, transform.GetChild(1).gameObject.transform.position);
             }
