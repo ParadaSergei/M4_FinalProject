@@ -17,13 +17,10 @@ public class AIEnemyBETA : MonoBehaviour
     private Vector3 _rayposition;
     private string _target;
 
-
-
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
-
     void Update()
     {
         _trap = GameObject.Find("LightStick");
@@ -90,5 +87,12 @@ public class AIEnemyBETA : MonoBehaviour
         {
             _navMeshAgent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Count)].position);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<HealthBarValue>().TakeDamage(30);
+        }    
     }
 }

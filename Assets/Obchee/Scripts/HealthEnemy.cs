@@ -13,17 +13,10 @@ public class HealthEnemy : MonoBehaviour
     {
         DieEnemy();
     }
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Lovushka"))
-        {
-            Debug.Log("Есть контакт!!!!!!!!!");
-            if (other.gameObject.GetComponent<PointTriggerLovushka>().isEmpty == false)
-            {
-                health -= 120;
-            }
-        }
-    }*/
+    public void TakeDamage(int damage)
+	{
+        health -= damage;
+	}
     private void DieEnemy()
     {
         if (health <= 0)
