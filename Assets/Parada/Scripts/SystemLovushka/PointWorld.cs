@@ -13,7 +13,7 @@ public class PointWorld : MonoBehaviour
     [SerializeField] private Transform _pricelCursor;
     [SerializeField] private GameObject _stickPrefab;
     [SerializeField] private GameObject _lightStickDrop;
-    private float forceStick = 100;
+    private float forceStick = 500;
 
     [Header("Смена Курсора")]
     [SerializeField] private Texture2D cursor;
