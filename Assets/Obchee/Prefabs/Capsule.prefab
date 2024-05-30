@@ -106,7 +106,9 @@ GameObject:
   - component: {fileID: 8904222725476478366}
   - component: {fileID: 8904222725476478365}
   - component: {fileID: 8904222725476478364}
+  - component: {fileID: 4929134258003313205}
   - component: {fileID: 8904222725476478363}
+  - component: {fileID: 988611585065360966}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -185,7 +187,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 8904222725476478362}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -200,7 +202,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -212,6 +214,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4929134258003313205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904222725476478362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721cbb4d30b8e0c4cbc2a18bf7a436b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  prefabBoom: {fileID: 100008, guid: 8f611da60097c85438a2947021f045cf, type: 3}
 --- !u!114 &8904222725476478363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +244,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Player: {fileID: 0}
-  Offset: {x: 0, y: 0, z: 0}
-  Damage: 30
+  Offset: {x: 0, y: 0, z: 2}
+  Damage: 20
   TrapDistanceVision: 10
   PlayerDistanceVision: 10
+--- !u!136 &988611585065360966
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8904222725476478362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6734701
+  m_Height: 3.5569715
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5772195, z: 0.027796209}
