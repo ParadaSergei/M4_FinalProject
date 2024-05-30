@@ -7,6 +7,7 @@ TagManager:
   - FxTemporaire
   - Lovushka
   - Enemy
+  - Stick
   layers:
   - Default
   - TransparentFX
