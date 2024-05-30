@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class AIEnemyBETA : MonoBehaviour
 {
+    public Animation Anime;
     public List<Transform> PatrolPoints;
     public Transform Player;
     public Vector3 Offset;
@@ -89,6 +90,17 @@ public class AIEnemyBETA : MonoBehaviour
         if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
         {
             _navMeshAgent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Count)].position);
+        }
+    }
+    void Anim()
+    {
+        if (_navMeshAgent.isStopped == true)
+        {
+            Anime.Play("Calm");
+        }
+        else
+        {
+            Anime.Play("Walk");
         }
     }
 }
