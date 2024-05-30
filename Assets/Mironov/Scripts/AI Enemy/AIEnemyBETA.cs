@@ -4,8 +4,6 @@ using UnityEngine.AI;
 
 public class AIEnemyBETA : MonoBehaviour
 {
-    public Animation Walk;
-    public Animation Idle;
     public List<Transform> PatrolPoints;
     public Transform Player;
     public Vector3 Offset;
@@ -19,16 +17,13 @@ public class AIEnemyBETA : MonoBehaviour
     private Vector3 _rayposition;
     private string _target;
 
-
-
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
-
     void Update()
     {
-        _trap = GameObject.Find("LightStick");
+        _trap = GameObject.FindGameObjectWithTag("Stick");
         _rayposition = transform.position + Offset;
         CheckTrap();
         CheckPlayer();
@@ -93,15 +88,11 @@ public class AIEnemyBETA : MonoBehaviour
             _navMeshAgent.SetDestination(PatrolPoints[Random.Range(0, PatrolPoints.Count)].position);
         }
     }
-    void Anim()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_navMeshAgent.isStopped == true)
+        if (other.gameObject.CompareTag("Player"))
         {
-            Idle.Play();
-        }
-        else
-        {
-            Walk.Play();
-        }
+            other.GetComponent<HealthBarValue>().TakeDamage(30);
+        }    
     }
 }

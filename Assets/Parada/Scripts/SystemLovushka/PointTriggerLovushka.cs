@@ -46,8 +46,4 @@ public class PointTriggerLovushka : MonoBehaviour
             }
         }
     }
-    /*private int InstantiateLovushkaKonecPrefab()
-    {
-        return 0;
-    }*/
 }

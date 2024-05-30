@@ -3,7 +3,8 @@
 public class CheckObjectInLovushkiForLine : MonoBehaviour
 {
     [SerializeField] private LineRenderer line;
-    private PointTriggerLovushka pointTriggerLovushkaScripts;
+    [SerializeField] private GameObject helpPrefab;
+    [SerializeField] private PointTriggerLovushka pointTriggerLovushkaScripts;
     private void Start()
     {
         line = GetComponent<LineRenderer>();
@@ -13,10 +14,25 @@ public class CheckObjectInLovushkiForLine : MonoBehaviour
     {
         if (!pointTriggerLovushkaScripts.isEmpty)
         {
-            if (transform.GetChild(0).gameObject != null && transform.GetChild(1).gameObject != null)
+            if (transform.childCount >= 2 && transform.GetChild(0) != null && transform.GetChild(1) != null)
             {
+                    Destroy(helpPrefab);
                 line.SetPosition(0, transform.GetChild(0).gameObject.transform.position);
                 line.SetPosition(1, transform.GetChild(1).gameObject.transform.position);
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pointTriggerLovushkaScripts.isEmpty == false)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                if (other.GetComponent<HealthEnemy>())
+                {
+                    other.GetComponent<HealthEnemy>().TakeDamage(120);
+                    Destroy(transform.gameObject);
+                }
             }
         }
     }

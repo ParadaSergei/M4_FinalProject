@@ -6,17 +6,13 @@ public class OpenCloseDoor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _isOpen = !_isOpen;
-        }
         if (_isOpen)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -3, transform.position.z), Time.deltaTime/2 );
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -5, transform.position.z), Time.deltaTime*3 );
         }
         else if(!_isOpen)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 4, transform.position.z), Time.deltaTime / 2);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 3, transform.position.z), Time.deltaTime * 3);
         }
     }
 }
