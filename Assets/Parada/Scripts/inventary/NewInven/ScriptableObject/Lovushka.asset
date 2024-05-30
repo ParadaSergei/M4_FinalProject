@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemType: 0
   name: Lovushka
   maxAmountStack: 1
-  icon: {fileID: 21300000, guid: e337eb37f77eaff4882c1f4887b7426c, type: 3}
-  lovushkaPrefab: {fileID: 6242942146486972120, guid: 8c11f9bcc07cff849ae7d9b73a42a616,
+  icon: {fileID: 21300000, guid: ac56e38c8e6720e468903c7164ddd3c7, type: 3}
+  lovushkaPrefab: {fileID: 1940510601870530640, guid: e95e33cdf94d41e4da0c3fd8d425e959,
     type: 3}
   changedHealth: 0
