@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +19,6 @@ public class AIEnemyBETA : MonoBehaviour
     private string _target;
 
     [SerializeField] private AudioSource damageAudio;
-
 
     void Start()
     {
@@ -99,4 +99,5 @@ public class AIEnemyBETA : MonoBehaviour
             other.GetComponent<HealthBarValue>().TakeDamage(10);
         }    
     }
+   
 }

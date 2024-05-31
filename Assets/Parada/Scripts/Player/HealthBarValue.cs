@@ -8,6 +8,7 @@ public class HealthBarValue : MonoBehaviour
     public int healthValue;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private GameObject prefabElectric;
+    [SerializeField] private GameObject dieScene;
     private void Update()
     {
         healthSlider.value = healthValue;
@@ -21,5 +22,12 @@ public class HealthBarValue : MonoBehaviour
     {
         healthValue += health;
         Instantiate(prefabElectric, transform.position, Quaternion.identity);
+    }
+    private void DiePlayer()
+    {
+        if (healthValue <= 0)
+        {
+            dieScene.SetActive(false);
+        }
     }
 }

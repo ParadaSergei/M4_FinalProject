@@ -28,6 +28,7 @@ public class AIEnemyBETA1 : MonoBehaviour
 
     void Update()
     {
+        Anim();
         _trap = GameObject.Find("LightStick");
         _rayposition = transform.position + Offset;
         CheckTrap();
