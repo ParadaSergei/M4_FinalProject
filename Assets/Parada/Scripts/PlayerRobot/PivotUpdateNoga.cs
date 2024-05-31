@@ -8,6 +8,7 @@ public class PivotUpdateNoga : MonoBehaviour
     [SerializeField] private Transform _nogaRightPoint;
     [SerializeField] private Transform _positionPivotLeft;
     [SerializeField] private Transform _positionPivotRight;
+    [SerializeField] private AudioSource movePlayer;
     //public byte NogaTransorm;
     private byte NogaBool;
 
@@ -17,8 +18,10 @@ public class PivotUpdateNoga : MonoBehaviour
         if (NogaTransorm == 0)  transform.position = _positionPivotLeft;
         if (NogaTransorm == 1) transform.position = _positionPivotRight;*/
 
-       /* _positionPivotLeft = new Vector3(_noga.position.x, _noga.position.y - 0.5f, _noga.position.z);
-        _positionPivotRight = new Vector3(_noga.position.x, _noga.position.y - 0.5f, _noga.position.z);*/
+        /* _positionPivotLeft = new Vector3(_noga.position.x, _noga.position.y - 0.5f, _noga.position.z);
+         _positionPivotRight = new Vector3(_noga.position.x, _noga.position.y - 0.5f, _noga.position.z);*/
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) movePlayer.Play();
 
         if (Input.GetKey(KeyCode.A))
         {

@@ -17,4 +17,9 @@ public class HealthBarValue : MonoBehaviour
         healthValue -= damage;
         Instantiate(prefabElectric, transform.position, Quaternion.identity);
     }
+    public void TakeHealth(int health)
+    {
+        healthValue += health;
+        Instantiate(prefabElectric, transform.position, Quaternion.identity);
+    }
 }

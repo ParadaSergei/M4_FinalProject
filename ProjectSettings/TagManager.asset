@@ -8,6 +8,7 @@ TagManager:
   - Lovushka
   - Enemy
   - Stick
+  - MainDoor
   layers:
   - Default
   - TransparentFX

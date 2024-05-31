@@ -17,6 +17,9 @@ public class AIEnemyBETA : MonoBehaviour
     private Vector3 _rayposition;
     private string _target;
 
+    [SerializeField] private AudioSource damageAudio;
+
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -92,7 +95,8 @@ public class AIEnemyBETA : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<HealthBarValue>().TakeDamage(30);
+            damageAudio.Play();
+            other.GetComponent<HealthBarValue>().TakeDamage(10);
         }    
     }
 }

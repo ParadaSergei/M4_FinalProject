@@ -22,6 +22,8 @@ public class PointWorld : MonoBehaviour
     [Header("Контроль уменьшения энергии")]
     [SerializeField] private int minusPower = 10;
     [SerializeField] private HealthBarValue _healthBarValue;
+    [SerializeField] private AudioSource giveItem;
+    [SerializeField] private AudioSource dropItem;
 
     void Start()
     {
@@ -38,6 +40,8 @@ public class PointWorld : MonoBehaviour
             {
                 CheckStickInventory();
                 CheckLovushkaInventory();
+              //  CheckMainDoor();
+                giveItem.Play();
             }
         }
         if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item != null)
@@ -47,7 +51,7 @@ public class PointWorld : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f))
         {
             gameObject.transform.position = hit.point;
-            if (hit.collider.gameObject.GetComponent<Item>() != null || hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null) ActiveCursor();
+            if (hit.collider.gameObject.GetComponent<Item>() != null || hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null || hit.collider.gameObject.CompareTag("MainDoor")) ActiveCursor();
             else DefaultCursor();
 
             if (hit.collider.gameObject.GetComponent<Item>() != null)
@@ -81,6 +85,7 @@ public class PointWorld : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.G))
             {
+                dropItem.Play();
                 var __stickPrefabRig = Instantiate(_stickPrefab, _lightStickDrop.transform.position, _lightStickDrop.transform.rotation);
                 __stickPrefabRig.GetComponent<Rigidbody>().AddForce(_lightStickDrop.transform.forward * forceStick);
                 forceStick = 100;
@@ -106,11 +111,37 @@ public class PointWorld : MonoBehaviour
                     {
                         hit.collider.gameObject.GetComponent<PointTriggerLovushka>().isEmpty = false;
                     }
+                    if (hit.collider.gameObject.GetComponent<OpenCloseDoor>() != null && hit.collider.CompareTag("MainDoor"))//Проверка объекта
+                    {
+                        if (hit.collider.gameObject.GetComponent<OpenCloseDoor>() != null)
+                        {
+                            hit.collider.gameObject.GetComponent<OpenCloseDoor>()._isOpen = true;
+                        }
+                    }
                 }
             }
             if (hit.collider.gameObject.GetComponent<PointTriggerLovushka>() != null) DestroyItemSlot();
         }
     }
+    /*private void CheckMainDoor()
+    {
+        if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().item.ItemType == ItemType.KeyCard && activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<Image>().sprite == activeSlot.selectedSprite)
+        {
+            ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 100f))
+            {
+                gameObject.transform.position = hit.point;
+                if (hit.collider.gameObject.GetComponent<OpenCloseDoor>() != null && hit.collider.CompareTag("MainDoor"))//Проверка объекта
+                {
+                    if (hit.collider.gameObject.GetComponent<OpenCloseDoor>() != null)
+                    {
+                        hit.collider.gameObject.GetComponent<OpenCloseDoor>()._isOpen = true;
+                    }
+                }
+            }
+            if (hit.collider.gameObject.GetComponent<OpenCloseDoor>() != null) DestroyItemSlot();
+        }
+    }*/
     private void DestroyItemSlot()
     {
         if (activeSlot.QuickPanel.GetChild(activeSlot.currentQuickSlotID).GetComponent<InventorySlot>().amountItem <= 1)

@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3084823939694384818}
   - component: {fileID: 3084823939694384817}
   - component: {fileID: 1931869363415258227}
-  - component: {fileID: 5427004991608597418}
-  - component: {fileID: 1931869362846599581}
+  - component: {fileID: 2342470610500160024}
   m_Layer: 0
   m_Name: InvLightStick
   m_TagString: Untagged
@@ -96,20 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemItem: {fileID: 11400000, guid: f550ab4f63387194f971cc00e429c023, type: 2}
   amountItem: 1
---- !u!114 &5427004991608597418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3084823939694384823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344c6e1a8c44a1147986bc2658fcc31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &1931869362846599581
-MeshCollider:
+--- !u!65 &2342470610500160024
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,7 +105,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.0000004, y: 2.0000005, z: 1.0000001}
+  m_Center: {x: 0.00000005960466, y: 0, z: -0.00000008940696}

@@ -5,6 +5,8 @@ public class HealthEnemy : MonoBehaviour
 {
     public int health;
     [SerializeField] private GameObject prefabBoom;
+    [SerializeField] private AudioSource dieAudio;
+
     private void Start()
     {
         health = 100;
@@ -21,6 +23,7 @@ public class HealthEnemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            dieAudio.Play();
             transform.GetComponent<AIEnemyBETA>().enabled = false;
             transform.GetComponent<NavMeshAgent>().enabled = false;
             Instantiate(prefabBoom, transform.position, Quaternion.identity);

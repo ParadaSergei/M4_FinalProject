@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Lovushka, LightPalka }
+public enum ItemType { Lovushka, LightPalka, KeyCard}
 public class ItemScribtableObject : ScriptableObject
 {
     public ItemType ItemType;
