@@ -2,6 +2,7 @@
 
 public class HealthPlayer : MonoBehaviour
 {
+    [SerializeField] private AudioSource healthAudio;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -9,7 +10,8 @@ public class HealthPlayer : MonoBehaviour
         {
             if (other.GetComponent<HealthBarValue>())
             {
-                other.GetComponent<HealthBarValue>().TakeHealth(50);
+                healthAudio.Play();
+                other.GetComponent<HealthBarValue>().TakeHealth(100);
                 Destroy(transform.gameObject);
             }
         }
